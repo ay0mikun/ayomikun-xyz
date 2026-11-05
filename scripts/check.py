@@ -29,6 +29,9 @@ class PageLinks(HTMLParser):
         attrs = dict(attributes)
         for name in ('src', 'href'):
             check(self.source, attrs.get(name))
+        for candidate in attrs.get('srcset', '').split(','):
+            if candidate.strip():
+                check(self.source, candidate.strip().split()[0])
         if tag == 'a' and attrs.get('href') and not urlsplit(attrs['href']).scheme and not urlsplit(attrs['href']).netloc and attrs.get('target') == '_blank':
             errors.append(f'{self.source.relative_to(ROOT)}: internal navigation opens a new tab')
 

@@ -2,19 +2,38 @@
 (() => {
   const preference = matchMedia('(prefers-reduced-motion: reduce)');
   let scrolling;
-  let frame;
+  let frame = null;
+  let clock = 0;
+  let previousTime;
+  const start = () => {
+    if (frame === null && !document.hidden && scrolling?.isScrolling) {
+      previousTime = undefined;
+      frame = requestAnimationFrame(tick);
+    }
+  };
+  const tick = (time) => {
+    // Advance Lenis only by active frame time, excluding time spent idle or hidden.
+    if (previousTime !== undefined) clock += time - previousTime;
+    previousTime = time;
+    scrolling?.raf(clock);
+    frame = null;
+    if (!document.hidden && scrolling?.isScrolling) frame = requestAnimationFrame(tick);
+  };
   const configure = () => {
     cancelAnimationFrame(frame);
+    frame = null;
     scrolling?.destroy();
     scrolling = null;
+    clock = 0;
     if (preference.matches || typeof Lenis === 'undefined') return;
     scrolling = new Lenis({ duration: 1.6 });
-    const tick = (time) => {
-      scrolling.raf(time);
-      frame = requestAnimationFrame(tick);
-    };
-    frame = requestAnimationFrame(tick);
+    scrolling.on('className change', start);
   };
+  document.addEventListener('visibilitychange', () => {
+    cancelAnimationFrame(frame);
+    frame = null;
+    start();
+  });
   preference.addEventListener('change', configure);
   configure();
 })();
@@ -31,9 +50,9 @@
       const link = entry.target;
       observer.unobserve(link);
       if (link === document.activeElement) return;
-      const animation = link.animate([
-        { opacity: 0, filter: 'blur(8px)' },
-        { opacity: 1, filter: 'blur(0px)' }
+      const animation = link.querySelector('.link-label').animate([
+        { opacity: 0, transform: 'translateY(3px)' },
+        { opacity: 1, transform: 'translateY(0)' }
       ], { duration: 450, delay: links.indexOf(link) % 4 * 45, easing: 'ease-out', fill: 'backwards' });
       animations.add(animation);
       animation.addEventListener('finish', () => animations.delete(animation), { once: true });

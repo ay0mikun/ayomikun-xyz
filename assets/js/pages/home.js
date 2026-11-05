@@ -16,6 +16,7 @@ let speedFrame;
 let targetRate = 1;
 let paused = false;
 let inView = false;
+let groupWidth = 0;
 const syncPlayback = () => {
   if (paused || !inView || document.hidden) carouselAnimation?.pause();
   else carouselAnimation?.play();
@@ -48,7 +49,7 @@ const animateGallery = () => {
   carousel.classList.toggle('is-animated', !motionPreference.matches);
   if (motionPreference.matches) return;
   carousel.scrollLeft = 0;
-  const distance = group.getBoundingClientRect().width;
+  const distance = groupWidth;
   if (!distance) return;
   // Two identical groups make the last-to-first transition seamless, including the 8px gap.
   const duration = distance / 40 * 1000;
@@ -66,7 +67,13 @@ carousel.addEventListener('pointerleave', updateSpeed);
 carousel.addEventListener('focusin', updateSpeed);
 carousel.addEventListener('focusout', () => requestAnimationFrame(updateSpeed));
 motionPreference.addEventListener('change', animateGallery);
-new ResizeObserver(animateGallery).observe(group);
+new ResizeObserver(([entry]) => {
+  // ResizeObserver provides the measurement without forcing a synchronous layout.
+  const width = entry.borderBoxSize[0].inlineSize;
+  if (width === groupWidth) return;
+  groupWidth = width;
+  animateGallery();
+}).observe(group);
 document.addEventListener('visibilitychange', syncPlayback);
 new IntersectionObserver(([entry]) => {
   inView = entry.isIntersecting;
@@ -86,5 +93,3 @@ carousel.addEventListener('keydown', event => {
   const delta = (event.key === 'ArrowRight' ? 1 : -1) * carousel.clientWidth * 0.75 / 40 * 1000;
   carouselAnimation.currentTime = ((Number(carouselAnimation.currentTime) + delta) % duration + duration) % duration;
 });
-animateGallery();
-

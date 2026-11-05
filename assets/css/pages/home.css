@@ -60,16 +60,32 @@
 }
 
 .status-dot {
+  position: relative;
   width: 6px;
   height: 6px;
   border-radius: 100px;
   background: #00a500;
+}
+
+.status-dot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: #00a500;
+  opacity: 0;
   animation: pulse 2.5s ease-in-out 2;
 }
 
 @keyframes pulse {
+  0%,100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+
   50% {
-    box-shadow: 0 0 0 4px #00a50018;
+    opacity: .1;
+    transform: scale(2.33);
   }
 }
 
@@ -371,7 +387,7 @@
     transition: none;
   }
 
-  .status-dot {
+  .status-dot::after {
     animation: none;
   }
 }
