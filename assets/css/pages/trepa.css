@@ -1,0 +1,289 @@
+.case-study {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  padding-top: 160px;
+  padding-bottom: 100px;
+}
+
+.case-back {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border-radius: 1000px;
+  background: #fefefe0d;
+  transition: background-color 160ms ease;
+}
+
+.case-back::before {
+  content: "";
+  position: absolute;
+  inset: -6px;
+}
+
+.case-back:hover {
+  background: #fefefe1a;
+}
+
+.case-intro,.case-identity,.case-block {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.case-logo {
+  display: block;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.case-title {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.case-title h1 {
+  font-size: 18px;
+  line-height: normal;
+}
+
+.case-title p,.case-heading,.case-details dt {
+  color: var(--muted);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.case-summary,.case-details {
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.case-details {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0;
+}
+
+.case-details > div {
+  display: grid;
+  grid-template-columns: 120px minmax(0,1fr);
+}
+
+.case-details dd {
+  margin: 0;
+}
+
+.case-details dt {
+  padding-top: 2px;
+}
+
+.case-block,.case-copy {
+  min-width: 0;
+}
+
+.case-block p,.case-copy {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.case-copy p + p {
+  margin-top: 16px;
+}
+
+.case-heading {
+  margin: 0;
+}
+
+.case-subheading {
+  color: var(--bright);
+  font-weight: 500;
+}
+
+.case-chapters {
+  gap: 32px;
+}
+
+.case-outcome-intro {
+  gap: 23px;
+}
+
+.case-study strong {
+  font-weight: 500;
+  color: var(--bright);
+}
+
+.case-study figure {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  margin: 0;
+  min-width: 0;
+}
+
+.case-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.case-study figcaption {
+  font-size: 14px;
+  color: var(--muted);
+  text-align: center;
+  line-height: normal;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
+.case-study p:has(a) {
+  color: #92928f;
+}
+
+.case-study p a {
+  color: var(--bright);
+  text-decoration: none;
+}
+
+.case-study p a:hover {
+  text-decoration: none;
+}
+
+@media (max-width:600px) {
+  .case-details {
+    gap: 14px;
+  }
+
+  .case-details > div {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .case-details dt {
+    padding: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .case-back { transition: none; }
+}
+
+.comparison-figure {
+  width: 100%;
+}
+
+.image-comparison {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3400 / 2500;
+  overflow: hidden;
+  border-radius: 8px;
+  isolation: isolate;
+}
+
+.comparison-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.comparison-before {
+  position: absolute;
+  inset: 0;
+  clip-path: inset(0 calc(100% - var(--split)) 0 0);
+}
+
+.comparison-label {
+  position: absolute;
+  top: 16px;
+  padding: 7px 12px;
+  border-radius: 100px;
+  background: #0e0e0ebf;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.comparison-label-before {
+  left: 16px;
+}
+
+.comparison-label-after {
+  right: 16px;
+}
+
+.comparison-divider {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--split);
+  width: 1px;
+  background: #fff;
+  pointer-events: none;
+  transform: translateX(-50%);
+}
+
+.comparison-handle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  transform: translate(-50%,-50%);
+  border-radius: 50%;
+  background: #fff;
+  color: #0e0e0e;
+  box-shadow: 0 1px 8px #0003;
+  padding: 0;
+  line-height: 0;
+}
+
+.comparison-range {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: ew-resize;
+  touch-action: pan-y;
+}
+
+.image-comparison:has(.comparison-range:focus-visible) {
+  outline: 2px solid var(--bright);
+  outline-offset: 4px;
+}
+
+.image-comparison:has(.comparison-range:focus-visible) .comparison-handle {
+  outline: 2px solid #0e0e0e;
+  outline-offset: 3px;
+}
+
+@media (max-width:600px) {
+  .comparison-label {
+    top: 12px;
+    padding: 6px 10px;
+  }
+
+  .comparison-label-before {
+    left: 12px;
+  }
+
+  .comparison-label-after {
+    right: 12px;
+  }
+}

@@ -1,0 +1,509 @@
+.hero {
+  padding: 160px 0 50px;
+  overflow: hidden;
+}
+
+.hero-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+
+.greeting {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.bio {
+  line-height: 1.5;
+}
+
+.bio p + p {
+  margin-top: 16px;
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+.resume-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 34px;
+  padding: 4px 12px 4px 10px;
+  border: 0;
+  border-radius: 10000px;
+  background: var(--bright);
+  color: var(--background);
+  font-weight: 500;
+  transform: scale(1);
+  transition: transform 400ms cubic-bezier(.34,1.4,.64,1);
+}
+
+.resume-button:is(:hover,:focus-visible) {
+  transform: scale(1.04);
+}
+
+.availability {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 34px;
+  color: var(--bright);
+  font-weight: 450;
+  white-space: nowrap;
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 100px;
+  background: #00a500;
+  animation: pulse 2.5s ease-in-out 2;
+}
+
+@keyframes pulse {
+  50% {
+    box-shadow: 0 0 0 4px #00a50018;
+  }
+}
+
+.carousel {
+  margin-top: 100px;
+  height: 420px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+}
+
+.carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel-track {
+  display: flex;
+  width: max-content;
+  height: 100%;
+  will-change: transform;
+}
+
+.carousel-group {
+  display: flex;
+  flex: none;
+  gap: 8px;
+  height: 100%;
+  padding-right: 8px;
+}
+
+.carousel.is-animated {
+  overflow-x: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .carousel-track {
+    will-change: auto;
+  }
+
+  .carousel-group[aria-hidden="true"] {
+    display: none;
+  }
+}
+
+.carousel img {
+  display: block;
+  height: 100%;
+  width: auto;
+  flex-shrink: 0;
+  object-fit: cover;
+}
+
+.works {
+  padding-top: 160px;
+}
+
+.projects {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+
+.project {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.project-cover {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4096 / 2085;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.bordered {
+  border: 1px solid #ffffff0d;
+}
+
+.project-caption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.project-caption h3 {
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--bright);
+}
+
+.tags {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  height: 26px;
+  padding-inline: 8px;
+  border-radius: 10000px;
+  font-size: 15px;
+  white-space: nowrap;
+}
+
+.product-tag {
+  background: #171e2a;
+  color: #428fff;
+}
+
+.web-tag {
+  background: #132320;
+  color: #00bc7d;
+}
+
+.branding-tag {
+  background: #281d16;
+  color: #ff6900;
+}
+
+.experience-group {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.group-title {
+  color: var(--muted);
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.jobs {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.jobs .dropdown + .dropdown {
+  border-top: 1px solid #ffffff0d;
+  padding-top: 16px;
+}
+
+.dropdown-trigger {
+  width: 100%;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+}
+
+.job-title,.job-time {
+  min-height: 44px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.job-title {
+  min-width: 0;
+  gap: 6px;
+}
+
+.job-company {
+  color: var(--bright);
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.job-role,.job-date {
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.job-time {
+  flex-shrink: 0;
+  align-items: flex-end;
+}
+
+.job-date {
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.dropdown-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  flex: 0 0 20px;
+  overflow: clip;
+  border-radius: 6px;
+  background: transparent;
+  transition: background-color 160ms ease;
+}
+
+.dropdown-icon img {
+  display: block;
+  transform: rotate(0deg);
+  transform-origin: center;
+  transition: transform var(--dropdown-duration) var(--dropdown-easing);
+}
+
+.dropdown-trigger:hover .dropdown-icon,.dropdown-trigger[aria-expanded="true"] .dropdown-icon {
+  background: var(--hover);
+}
+
+.dropdown-trigger[aria-expanded="true"] .dropdown-icon img {
+  transform: rotate(180deg);
+}
+
+.dropdown-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  visibility: hidden;
+  transition: grid-template-rows var(--dropdown-duration) var(--dropdown-easing), opacity var(--dropdown-duration) ease, visibility var(--dropdown-duration);
+}
+
+.dropdown-panel-inner {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.work-description {
+  padding-top: 20px;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.work-description p + p {
+  margin-top: 16px;
+}
+
+.dropdown-trigger[aria-expanded="true"] + .dropdown-panel {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  visibility: visible;
+}
+
+@media (max-width: 600px) {
+  .carousel {
+    height: 280px;
+  }
+
+  .works {
+    padding-top: 100px;
+  }
+
+  .projects {
+    gap: 32px;
+  }
+
+  .project {
+    gap: 14px;
+  }
+
+  .project-caption {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .project-caption h3 {
+    font-size: 17px;
+  }
+}
+
+@media (max-width: 360px) {
+  .hero-actions {
+    gap: 14px;
+  }
+
+  .availability {
+    font-size: 14px;
+  }
+
+  .job-date {
+    font-size: 13px;
+  }
+
+  .job-role {
+    font-size: 14px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dropdown-icon,.dropdown-icon img,.dropdown-panel {
+    transition: none;
+  }
+
+  .status-dot {
+    animation: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .resume-button {
+    transition: none;
+  }
+
+  .resume-button:is(:hover,:focus-visible) {
+    transform: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .tag {
+    border: 1px solid ButtonText;
+  }
+
+  .status-dot {
+    background: CanvasText;
+  }
+}
+
+.bio {
+  color: #92928f;
+}
+
+.bio a,.bio a:hover {
+  text-decoration: none;
+}
+
+.project-link,.project-link:hover {
+  color: inherit;
+  text-decoration: none;
+}
+
+.project-pending {
+  position: relative;
+}
+
+.project-visual {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.project-pending-trigger {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+}
+
+.coming-soon-overlay {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  background: #0000004d;
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 200ms ease;
+}
+
+.coming-soon-tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  height: 32px;
+  padding: 4px 12px 4px 10px;
+  border-radius: 10000px;
+  background: #fefefe;
+  color: #0e0e0e;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: normal;
+  white-space: nowrap;
+}
+
+.coming-soon-tag img {
+  display: block;
+  flex: none;
+}
+
+.project-pending:is(:hover,:focus-within,.is-pending-active) .coming-soon-overlay {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .coming-soon-overlay {
+    transition: none;
+  }
+}
+
+.resume-button:hover {
+  text-decoration: none;
+}
+
+.project-visual .project-cover {
+  transform: scale(1);
+  transition: transform 420ms cubic-bezier(.22,1,.36,1);
+}
+
+@media (hover:hover) and (pointer:fine) {
+  .project:hover .project-cover {
+    transform: scale(1.025);
+  }
+}
+
+.project:focus-within .project-cover {
+  transform: scale(1.025);
+}
+
+@media (prefers-reduced-motion:reduce) {
+  .project-visual .project-cover {
+    transition: none;
+  }
+
+  .project:hover .project-cover,.project:focus-within .project-cover {
+    transform: none;
+  }
+}
+
+.greeting h1 {
+  font-weight: 450;
+}
