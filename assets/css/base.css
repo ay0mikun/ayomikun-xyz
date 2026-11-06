@@ -255,3 +255,25 @@ a,button,summary,input,select,textarea,[role="button"],[role="link"],[role="slid
 .contact-links a,.contact-links a:hover {
   text-decoration: none;
 }
+
+@media (prefers-reduced-motion: no-preference) {
+  .appear {
+    animation: appear 450ms ease-out var(--appear-delay, 0ms) backwards;
+  }
+
+  .appear:focus-within {
+    animation: none;
+  }
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    filter: blur(8px);
+  }
+
+  to {
+    opacity: 1;
+    filter: blur(0);
+  }
+}

@@ -42,7 +42,7 @@
 (() => {
   const preference = matchMedia('(prefers-reduced-motion: reduce)');
   if (preference.matches || !('IntersectionObserver' in window)) return;
-  const links = [...document.querySelectorAll('.bio a, .contact-links a')];
+  const links = [...document.querySelectorAll('.contact-links a')];
   const animations = new Set();
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
