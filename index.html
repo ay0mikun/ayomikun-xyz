@@ -35,6 +35,30 @@
     <section class="hero" aria-labelledby="greeting">
       <div class="container hero-copy">
         <header class="greeting"><img class="portrait appear" src="assets/images/profile.webp" width="48" height="48" alt="Ayo"><h1 id="greeting" class="appear" style="--appear-delay: 65ms">Hello there,</h1></header>
+        <!-- Set the greeting during parsing so the fallback never flashes on load. -->
+        <script>
+          (() => {
+            // getHours() uses the visitor's device timezone, including daylight saving time.
+            function greetingForHour(hour) {
+              if (hour >= 5 && hour < 12) return 'Good Morning!';
+              if (hour >= 12 && hour < 17) return 'Good Afternoon!';
+              if (hour >= 17 && hour < 21) return 'Good Evening!';
+              return 'Hello there,';
+            }
+
+            const heading = document.getElementById('greeting');
+            let timer;
+            const update = () => {
+              clearTimeout(timer);
+              const greeting = greetingForHour(new Date().getHours());
+              if (heading.textContent !== greeting) heading.textContent = greeting;
+              if (!document.hidden) timer = setTimeout(update, 60000 - Date.now() % 60000);
+            };
+            document.addEventListener('visibilitychange', update);
+            window.addEventListener('focus', update);
+            update();
+          })();
+        </script>
         <div class="bio">
           <p class="appear" style="--appear-delay: 130ms">I'm <span class="bright">Ayo</span>, a designer with a longstanding interest in products that look good and are easy to use.</p>
           <p class="appear" style="--appear-delay: 195ms">Most recently, I worked full-time at <a href="https://x.com/trepa_io" target="_blank" rel="noopener noreferrer"><span class="link-label">Trepa</span></a>, a precision prediction market backed by <a href="https://colosseum.com/" target="_blank" rel="noopener noreferrer"><span class="link-label">Colosseum</span></a>, where I led a complete redesign of the product to make predictions easier to find and bets easier to place. I also maintained the brand's visual identity by creating consistent visual assets.</p>

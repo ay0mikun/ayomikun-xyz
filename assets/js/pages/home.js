@@ -1,7 +1,6 @@
 import '../main.js';
 import '../components/dropdown.js';
 import '../components/pending-projects.js';
-import './greeting.js';
 
 const track = document.getElementById('gallery');
 const group = track.querySelector('.carousel-group');
