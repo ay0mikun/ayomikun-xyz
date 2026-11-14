@@ -96,10 +96,6 @@
   margin-top: 16px;
 }
 
-.case-heading {
-  margin: 0;
-}
-
 .case-subheading {
   color: var(--bright);
   font-weight: 500;
@@ -147,12 +143,8 @@
   color: #92928f;
 }
 
-.case-study p a {
+.case-study p a,.case-study p a:hover {
   color: var(--bright);
-  text-decoration: none;
-}
-
-.case-study p a:hover {
   text-decoration: none;
 }
 

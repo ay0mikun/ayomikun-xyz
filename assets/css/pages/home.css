@@ -16,6 +16,7 @@
 }
 
 .bio {
+  color: #92928f;
   line-height: 1.5;
 }
 
@@ -47,6 +48,7 @@
 
 .resume-button:is(:hover,:focus-visible) {
   transform: scale(1.04);
+  text-decoration: none;
 }
 
 .availability {
@@ -118,16 +120,6 @@
 
 .carousel.is-animated {
   overflow-x: hidden;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .carousel-track {
-    will-change: auto;
-  }
-
-  .carousel-group[aria-hidden="true"] {
-    display: none;
-  }
 }
 
 .carousel img {
@@ -311,12 +303,6 @@
   }
 }
 
-@media (max-width: 600px) {
-  .personal-projects {
-    padding-block: 50px;
-  }
-}
-
 .experience-group {
   display: flex;
   flex-direction: column;
@@ -442,28 +428,6 @@
   visibility: visible;
 }
 
-@media (max-width: 600px) {
-  .carousel {
-    height: 280px;
-  }
-
-  .works {
-    padding-top: 100px;
-  }
-
-  .projects {
-    gap: 32px;
-  }
-
-  .project {
-    gap: 24px;
-  }
-
-  .project-caption p {
-    line-height: 1.5;
-  }
-}
-
 @media (max-width: 360px) {
   .hero-actions {
     gap: 14px;
@@ -482,34 +446,10 @@
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .dropdown-icon,.dropdown-icon img,.dropdown-panel {
-    transition: none;
-  }
-
-  .status-dot::after {
-    animation: none;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .resume-button {
-    transition: none;
-  }
-
-  .resume-button:is(:hover,:focus-visible) {
-    transform: none;
-  }
-}
-
 @media (forced-colors: active) {
   .status-dot {
     background: CanvasText;
   }
-}
-
-.bio {
-  color: #92928f;
 }
 
 .bio a,.bio a:hover {
@@ -581,16 +521,6 @@
   opacity: 1;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .coming-soon-overlay {
-    transition: none;
-  }
-}
-
-.resume-button:hover {
-  text-decoration: none;
-}
-
 .project-visual .project-cover {
   transform: scale(1);
   transition: transform 420ms cubic-bezier(.22,1,.36,1);
@@ -606,16 +536,59 @@
   transform: scale(1.025);
 }
 
-@media (prefers-reduced-motion:reduce) {
-  .project-visual .project-cover {
+.greeting h1 {
+  font-weight: 450;
+}
+
+@media (max-width: 600px) {
+  .personal-projects {
+    padding-block: 50px;
+  }
+
+  .carousel {
+    height: 280px;
+  }
+
+  .works {
+    padding-top: 100px;
+  }
+
+  .projects {
+    gap: 32px;
+  }
+
+  .project {
+    gap: 24px;
+  }
+
+  .project-caption p {
+    line-height: 1.5;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .carousel-track {
+    will-change: auto;
+  }
+
+  .carousel-group[aria-hidden="true"] {
+    display: none;
+  }
+
+  .dropdown-icon,.dropdown-icon img,.dropdown-panel,
+  .resume-button,.coming-soon-overlay,.project-visual .project-cover {
     transition: none;
+  }
+
+  .status-dot::after {
+    animation: none;
+  }
+
+  .resume-button:is(:hover,:focus-visible) {
+    transform: none;
   }
 
   .project:hover .project-cover,.project:focus-within .project-cover {
     transform: none;
   }
-}
-
-.greeting h1 {
-  font-weight: 450;
 }

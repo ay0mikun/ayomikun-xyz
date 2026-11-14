@@ -53,7 +53,6 @@ button,a {
 button {
   font: inherit;
   letter-spacing: inherit;
-  cursor: pointer;
 }
 
 a {
@@ -140,6 +139,8 @@ h2 {
 }
 
 .contact-links a {
+  min-height: 24px;
+  text-decoration: none;
   position: relative;
   padding: 0;
   border: 0;
@@ -151,6 +152,7 @@ h2 {
 
 .contact-links a:is(:hover,:focus-visible) {
   color: var(--bright);
+  text-decoration: none;
 }
 
 @media (max-width: 600px) {
@@ -177,12 +179,6 @@ html.lenis {
 
 .lenis.lenis-scrolling iframe {
   pointer-events: none;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .contact-links a {
-    transition: none;
-  }
 }
 
 .sr-only {
@@ -217,10 +213,6 @@ html.lenis {
   outline: none;
 }
 
-.contact-links a {
-  min-height: 24px;
-}
-
 .link-label {
   display: inline-block;
   position: relative;
@@ -244,12 +236,6 @@ html.lenis {
   transform: scaleX(1);
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .link-label::after {
-    transition: none;
-  }
-}
-
 @media (forced-colors: active) {
   .link-label {
     text-decoration: underline;
@@ -266,10 +252,6 @@ html,body {
 
 a,button,summary,input,select,textarea,[role="button"],[role="link"],[role="slider"],[contenteditable="true"],input[type="range"] {
   cursor: url('../cursors/select-20.png') 8 3, pointer;
-}
-
-.contact-links a,.contact-links a:hover {
-  text-decoration: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -291,5 +273,15 @@ a,button,summary,input,select,textarea,[role="button"],[role="link"],[role="slid
   to {
     opacity: 1;
     filter: blur(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-links a {
+    transition: none;
+  }
+
+  .link-label::after {
+    transition: none;
   }
 }
