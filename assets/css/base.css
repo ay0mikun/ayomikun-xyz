@@ -100,6 +100,22 @@ h2 {
   line-height: 1.5;
 }
 
+.footer-divider {
+  display: block;
+  width: 100%;
+  height: 1px;
+}
+
+.footer-credits {
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.footer-credits p + p {
+  margin-top: 16px;
+}
+
 .section {
   padding-block: 50px;
 }

@@ -7,6 +7,8 @@ class PortfolioFooter extends HTMLElement {
     <div class="signoff"><img loading="lazy" decoding="async" class="portrait" src="${new URL('assets/images/profile.webp', footerBase).href}" width="48" height="48" alt="Ayo"><animated-signature></animated-signature></div>
     <p class="footer-copy">I'm interested in opportunities where I can contribute to product thinking, design execution and the development of useful digital experiences.</p>
     <nav class="contact-links" aria-label="Contact"><a href="mailto:adebayojohnpaul885@gmail.com" target="_blank" rel="noopener noreferrer"><span class="link-label">Send a mail</span></a><a href="https://x.com/Ayo_Design" target="_blank" rel="noopener noreferrer"><span class="link-label">Twitter</span></a><a href="https://www.linkedin.com/in/johnpauladebayo/" target="_blank" rel="noopener noreferrer"><span class="link-label">LinkedIn</span></a><a href="https://drive.google.com/file/d/1aAd5R4C7v3J3VwL5frNz7BCr2YNsZg_4/view?usp=sharing" target="_blank" rel="noopener noreferrer"><span class="link-label">Resume</span></a></nav>
+    <img class="footer-divider" src="${new URL('assets/icons/footer-divider.svg', footerBase).href}" width="550" height="1" alt="" loading="lazy" decoding="async">
+    <div class="footer-credits"><p>Designed &amp; built by me</p><p>© 2026 Johnpaul Adebayo</p></div>
   </div></footer>`;
   }
 }
