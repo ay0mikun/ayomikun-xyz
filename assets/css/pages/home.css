@@ -369,7 +369,7 @@
 .job-company {
   color: var(--bright);
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 450;
 }
 
 .job-role,.job-date {
@@ -522,7 +522,7 @@
   background: #fefefe;
   color: #0e0e0e;
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 450;
   line-height: normal;
   white-space: nowrap;
 }
@@ -605,7 +605,7 @@
 .experience .section-content { gap: 36px; }
 .experience h2 { font-weight: 450; }
 .experience .job-company { font-weight: 450; }
-.experience .dropdown:first-child .job-company { font-weight: 500; }
+.experience .dropdown:first-child .job-company { font-weight: 450; }
 
 .works .container { width: min(600px,calc(100% - 32px)); }
 .works .section-content { gap: 36px; }
