@@ -1,3 +1,4 @@
-import './components/footer.js';
-import './components/signature.js';
-import './interactions.js';
+import './components/footer.js?v=20261121-10';
+import './components/signature.js?v=20261120-21';
+import './interactions.js?v=20261120-2';
+import './components/footer-note.js?v=20261120-21';

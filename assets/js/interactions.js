@@ -1,7 +1,14 @@
+let scrolling;
+
+// Keep layout adjustments in sync with Lenis instead of starting a second scroll.
+export const adjustScrollImmediately = delta => {
+  if (scrolling) scrolling.scrollTo(window.scrollY + delta, { immediate: true, force: true });
+  else window.scrollBy({ top: delta, behavior: 'instant' });
+};
+
 // Match the reference site's Lenis 1.0.42 configuration (intensity 16 / 10).
 (() => {
   const preference = matchMedia('(prefers-reduced-motion: reduce)');
-  let scrolling;
   let frame = null;
   let clock = 0;
   let previousTime;
@@ -36,34 +43,4 @@
   });
   preference.addEventListener('change', configure);
   configure();
-})();
-
-// Reveal links once as they enter view; keep the HTML visible without JavaScript.
-(() => {
-  const preference = matchMedia('(prefers-reduced-motion: reduce)');
-  if (preference.matches || !('IntersectionObserver' in window)) return;
-  const links = [...document.querySelectorAll('.contact-links a')];
-  const animations = new Set();
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      const link = entry.target;
-      observer.unobserve(link);
-      if (link === document.activeElement) return;
-      const animation = link.querySelector('.link-label').animate([
-        { opacity: 0, transform: 'translateY(3px)' },
-        { opacity: 1, transform: 'translateY(0)' }
-      ], { duration: 450, delay: links.indexOf(link) % 4 * 45, easing: 'ease-out', fill: 'backwards' });
-      animations.add(animation);
-      animation.addEventListener('finish', () => animations.delete(animation), { once: true });
-      link.addEventListener('focus', () => animation.cancel(), { once: true });
-    });
-  }, { threshold: 0.25 });
-  links.forEach(link => observer.observe(link));
-  preference.addEventListener('change', () => {
-    if (!preference.matches) return;
-    observer.disconnect();
-    animations.forEach(animation => animation.cancel());
-    animations.clear();
-  });
 })();

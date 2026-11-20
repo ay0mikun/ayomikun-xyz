@@ -1,0 +1,85 @@
+.about-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 80px;
+  padding-top: 50px;
+}
+.about-copy { width: min(600px,calc(100% - 160px)); display: flex; flex-direction: column; gap: 36px; }
+.about-copy h2 { font-size: 16px; font-weight: 500; line-height: normal; }
+.about-prose { line-height: 1.6; }
+.about-prose p + p { margin-top: 16px; }
+.about-collage { position: relative; width: 100%; height: 440px; overflow: clip; background-image: linear-gradient(to right, #ffffff0d 1px, transparent 1px), linear-gradient(to bottom, #ffffff0d 1px, transparent 1px); background-size: 48px 48px; background-position: center 4px; }
+.collage-board { --unit: 1px; position: absolute; left: 50%; width: 1200px; height: 440px; transform: translateX(-50%); }
+.collage-item {
+  position: absolute;
+  left: calc(var(--x) * var(--unit));
+  top: calc(var(--y) * var(--unit));
+  width: calc(var(--w) * var(--unit));
+  margin: 0;
+  touch-action: none;
+  user-select: none;
+  cursor: url('../../cursors/drag-20.png') 10 10, grab;
+  translate: var(--drag-x,0px) var(--drag-y,0px);
+  transform: translate(-50%,-50%) rotate(var(--angle));
+}
+.collage-item img { display: block; width: 100%; height: auto; }
+.collage-item figcaption { font-family: Caveat,cursive; font-size: calc(var(--label-size, 14) * var(--unit)); font-weight: 400; line-height: 1.3; letter-spacing: -.01em; text-align: center; color: red; text-box-trim: trim-both; text-box-edge: cap alphabetic; white-space: pre; }
+.collage-crop { position: relative; display: block; overflow: hidden; }
+.collage-crop img { position: absolute; max-width: none; }
+.collage-gear { display: flex; flex-direction: column; align-items: center; gap: calc(6 * var(--unit)); --label-size: 18; }
+.collage-gear-row { display: flex; align-items: flex-start; width: 100%; }
+.collage-gear-row .collage-crop { width: 73.333333%; aspect-ratio: 220 / 106.087; }
+.collage-gear-row .collage-crop img { width: 121.56%; height: 252.09%; left: -10.33%; top: -53.62%; }
+.collage-gear-row > img { width: 26.666667%; height: auto; }
+.collage-controller { display: flex; flex-direction: column; align-items: center; gap: calc(8 * var(--unit)); --label-size: 17; }
+.collage-controller .collage-crop { width: 100%; aspect-ratio: 1200 / 847.163; }
+.collage-controller img { width: 100%; height: 141.65%; left: 0; top: -20.82%; }
+.collage-damn-album { display: flex; flex-direction: column; align-items: center; gap: calc(8 * var(--unit)); transform: none; --label-size: 17; }
+.collage-ichigo .collage-crop { aspect-ratio: 101.2265625 / 132.44444275; }
+.collage-ichigo img { width: 197.58%; height: 100%; left: -48.79%; top: 0; }
+.collage-ichigo { --label-size: 16; }
+.collage-macbook { --x: 792; --y: 104.11; --w: 201; --angle: 0deg; }
+.collage-sandals { --x: 348.77; --y: 319.57; --w: 200; --angle: 0deg; }
+.collage-portrait-mirror { --x: 908; --y: 301.27; --w: 200; --angle: 0deg; }
+.collage-portrait-outdoors { --x: 133.79; --y: 241.19; --w: 184; --angle: -8.41deg; }
+.collage-bruce-lee { --x: 686.7455; --y: 321.714; --w: 110; --angle: 14.74deg; }
+.collage-liverpool { --x: 1090.3505; --y: 279.2735; --w: 90; --angle: -15.65deg; }
+.collage-gear { --x: 498.8795; --y: 148.4885; --w: 300; --angle: 12.57deg; }
+.collage-controller { --x: 1077.9865; --y: 108.3795; --w: 116; --angle: 30.68deg; }
+.collage-damn-album { --x: 460.77; --y: 271.34; --w: 125; --angle: 0deg; }
+.collage-ichigo { --x: 261.6735; --y: 109.11; --w: 119.765; --angle: -10.9deg; }
+
+@media (max-width: 600px) {
+  .about-copy { width: calc(100% - 32px); }
+  .about-collage { --mobile-unit: min(1px,calc(100vw / 390)); height: calc(400 * var(--mobile-unit)); }
+  .collage-board { --unit: var(--mobile-unit); width: calc(390 * var(--unit)); height: calc(400 * var(--unit)); }
+  .collage-liverpool { --label-size: 6.533; }
+  .collage-gear { gap: calc(2.64 * var(--unit)); --label-size: 7.92; }
+  .collage-controller { gap: calc(4 * var(--unit)); --label-size: 8.5; }
+  .collage-damn-album { gap: calc(3.968 * var(--unit)); --label-size: 8.432; }
+  .collage-ichigo { --label-size: 5.878; }
+  .collage-macbook { --x: 287.5; --y: 255.74; --w: 103; }
+  .collage-sandals { --x: 75; --y: 323.51; --w: 90; }
+  .collage-portrait-mirror { --x: 318.5; --y: 340.76; --w: 81; }
+  .collage-portrait-outdoors { --x: 72.8; --y: 178.75; --w: 88; }
+  .collage-bruce-lee { --x: 179.124; --y: 178.3155; --w: 51; }
+  .collage-liverpool { --x: 329.123; --y: 169.2495; --w: 42; }
+  .collage-gear { --x: 190.509; --y: 70.874; --w: 132; }
+  .collage-controller { --x: 327.203; --y: 61.2745; --w: 58; }
+  .collage-damn-album { --x: 157; --y: 307; --w: 62; }
+  .collage-ichigo { --x: 64.4245; --y: 52.0695; --w: 44; }
+}
+
+.collage-item.is-dragging { cursor: url('../../cursors/drag-20.png') 10 10, grabbing; }
+
+@media (hover: hover) and (pointer: fine) {
+  .collage-item { rotate: 0deg; transition: rotate 240ms cubic-bezier(.22,1,.36,1); }
+  .collage-item:hover { rotate: 3deg; }
+  .collage-item:nth-child(even):hover { rotate: -3deg; }
+  .collage-item.is-dragging { rotate: 0deg; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .collage-item { transition: none; }
+  .collage-item:hover,.collage-item:nth-child(even):hover { rotate: none; }
+}

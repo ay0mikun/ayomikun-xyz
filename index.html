@@ -24,82 +24,65 @@
   <link rel="icon" type="image/png" href="assets/icons/favicon.png">
   <link rel="apple-touch-icon" href="assets/icons/favicon.png">
   <link rel="preload" href="assets/fonts/geist-regular.ttf" as="font" type="font/ttf" crossorigin>
-  <link rel="stylesheet" href="assets/css/base.css">
-  <link rel="stylesheet" href="assets/css/pages/home.css">
+  <link rel="stylesheet" href="assets/css/base.css?v=20261120-27">
+  <link rel="stylesheet" href="assets/css/pages/home.css?v=20261121-4">
+  <link rel="stylesheet" href="assets/css/pages/about.css?v=20261121-5">
+  <link rel="stylesheet" href="assets/css/components/bottom-nav.css?v=20261121-6">
   <script src="assets/vendor/lenis.min.js" defer></script>
-  <script type="module" src="assets/js/pages/home.js"></script>
+  <script type="module" src="assets/js/pages/home.js?v=20261121-10"></script>
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to content</a>
   <main id="main-content" tabindex="-1">
-    <section class="hero" aria-labelledby="greeting">
+    <section class="hero" aria-labelledby="hero-title">
       <div class="container hero-copy">
-        <header class="greeting"><img class="portrait appear" src="assets/images/profile.webp" width="48" height="48" alt="Ayo"><h1 id="greeting" class="appear" style="--appear-delay: 65ms">Hello there,</h1></header>
-        <!-- Set the greeting during parsing so the fallback never flashes on load. -->
-        <script>
-          (() => {
-            // getHours() uses the visitor's device timezone, including daylight saving time.
-            function greetingForHour(hour) {
-              if (hour >= 5 && hour < 12) return 'Good Morning!';
-              if (hour >= 12 && hour < 17) return 'Good Afternoon!';
-              if (hour >= 17 && hour < 21) return 'Good Evening!';
-              return 'Hello there,';
-            }
-
-            const heading = document.getElementById('greeting');
-            let timer;
-            const update = () => {
-              clearTimeout(timer);
-              const greeting = greetingForHour(new Date().getHours());
-              if (heading.textContent !== greeting) heading.textContent = greeting;
-              if (!document.hidden) timer = setTimeout(update, 60000 - Date.now() % 60000);
-            };
-            document.addEventListener('visibilitychange', update);
-            window.addEventListener('focus', update);
-            update();
-          })();
-        </script>
+        <header class="hero-header">
+          <div class="hero-identity">
+            <button class="hero-photo appear" type="button" tabindex="-1" aria-label="Switch portrait" aria-pressed="false">
+              <span class="hero-photo-flipper" aria-hidden="true">
+                <span class="hero-photo-face"><span class="hero-photo-inner"><img src="assets/images/hero-portrait.jpg" width="62" height="62" alt="" decoding="async"></span></span>
+                <span class="hero-photo-face hero-photo-back"><span class="hero-photo-inner"><img src="assets/images/profile.webp" width="62" height="62" alt="" decoding="async"></span></span>
+              </span>
+              <span class="hero-photo-pin" aria-hidden="true"><img src="assets/icons/hero-portrait-pin.svg" alt=""></span>
+            </button>
+            <div class="hero-name appear" style="--appear-delay: 65ms">
+              <h1 id="hero-title"><button class="hero-name-replay" type="button" tabindex="-1" aria-label="Johnpaul Adebayo — replay pencil underline">Johnpaul Adebayo</button></h1>
+              <svg class="hero-name-underline" width="136.142" height="4.17855" viewBox="0 0 136.142 4.17855" aria-hidden="true"><defs><mask id="name-pencil-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="136.142" height="4.17855"><path class="name-pencil-path" d="M-1 2.1L137 2.1" pathLength="1" fill="none" stroke="white" stroke-width="8" stroke-dasharray="1"/></mask></defs><image href="assets/icons/hero-name-underline.svg" width="136.142" height="4.17855" mask="url(#name-pencil-mask)"/></svg>
+              <p>Product designer &amp; builder</p>
+            </div>
+          </div>
+          <nav class="hero-socials appear" aria-label="Social profiles" style="--appear-delay: 130ms">
+            <a href="https://x.com/Ayo_Design" target="_blank" rel="noopener noreferrer" aria-label="Johnpaul on X (opens in a new tab)"><img src="assets/icons/hero-x.svg" alt=""></a>
+            <a class="hero-linkedin" href="https://www.linkedin.com/in/johnpauladebayo/" target="_blank" rel="noopener noreferrer" aria-label="Johnpaul on LinkedIn (opens in a new tab)"><img src="assets/icons/hero-linkedin.svg" alt=""></a>
+            <a href="https://github.com/ay0mikun" target="_blank" rel="noopener noreferrer" aria-label="Johnpaul on GitHub (opens in a new tab)"><img src="assets/icons/hero-github.svg" alt=""></a>
+          </nav>
+        </header>
         <div class="bio">
-          <p class="appear" style="--appear-delay: 130ms">I'm <span class="bright">Ayo</span>, a designer with a longstanding interest in products that look good and are easy to use.</p>
-          <p class="appear" style="--appear-delay: 195ms">Most recently, I worked full-time at <a href="https://x.com/trepa_io" target="_blank" rel="noopener noreferrer"><span class="link-label">Trepa</span></a>, a precision prediction market backed by <a href="https://colosseum.com/" target="_blank" rel="noopener noreferrer"><span class="link-label">Colosseum</span></a>, where I led a complete redesign of the product to make predictions easier to find and bets easier to place. I also maintained the brand's visual identity by creating consistent visual assets.</p>
-          <p class="appear" style="--appear-delay: 260ms">I'm a software engineering student with a soft spot for neat typography, well-crafted interfaces and the little details that make a product feel just right. My work spans blockchain, finance, social products and real estate.</p>
+          <p class="appear" style="--appear-delay: 130ms">Based in Nigeria, I work across design and code, helping startup teams build and ship products with taste.</p>
+          <p class="appear" style="--appear-delay: 195ms">Previously at <a href="https://x.com/trepa_io" target="_blank" rel="noopener noreferrer"><span class="link-label">Trepa</span></a>, a precision prediction market backed by <a href="https://colosseum.com/" target="_blank" rel="noopener noreferrer"><span class="link-label">Colosseum</span></a>, where I led a full redesign across mobile and desktop and maintained the brand’s visual identity across platforms.</p>
+          <p class="appear" style="--appear-delay: 260ms">On the side, I’m building <a href="https://pluck-app-three.vercel.app/" target="_blank" rel="noopener noreferrer"><span class="link-label">Pluck</span></a>, a personal library for saving designs from Twitter (X).</p>
+          <p class="appear" style="--appear-delay: 325ms">I like well-crafted interfaces, neat typography and the micro animations that make a product feel just right.</p>
         </div>
-        <div class="hero-actions appear" style="--appear-delay: 325ms"><a class="resume-button" href="https://drive.google.com/file/d/1aAd5R4C7v3J3VwL5frNz7BCr2YNsZg_4/view?usp=sharing" target="_blank" rel="noopener noreferrer"><img src="assets/icons/download.svg" width="16" height="16" alt="">Resume</a><span class="availability"><span class="status-dot"></span>Available for work</span></div>
+        <div class="hero-actions appear" style="--appear-delay: 390ms">
+          <a class="resume-button" href="https://drive.google.com/file/d/1aAd5R4C7v3J3VwL5frNz7BCr2YNsZg_4/view?usp=sharing" target="_blank" rel="noopener noreferrer"><svg class="download-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 10V12.6667C14 13.0203 13.8595 13.3594 13.6095 13.6095C13.3594 13.8595 13.0203 14 12.6667 14H3.33333C2.97971 14 2.64057 13.8595 2.39052 13.6095C2.14048 13.3594 2 13.0203 2 12.6667V10"/><g class="download-arrow"><path d="M8 10V2"/><path d="M4.66667 6.66667L8 10L11.3333 6.66667"/></g></svg>Resume</a>
+          <span class="availability"><span class="status-dot" aria-hidden="true"></span>Open to work</span>
+        </div>
       </div>
-      <div class="carousel" tabindex="0" role="region" aria-label="Design gallery" aria-describedby="gallery-help"><div class="carousel-track" id="gallery"><div class="carousel-group"><img src="assets/images/carousel/download-h420.webp" fetchpriority="high" alt="Prediction market interface exploration" width="1600" height="1200" srcset="assets/images/carousel/download-h280.webp 373w, assets/images/carousel/download-h420.webp 560w, assets/images/carousel/download-h840.webp 1120w" sizes="(max-width: 600px) 373.33px, 560.00px" decoding="async" draggable="false"><img src="assets/images/carousel/Free%20iPhone%20Air-h420.webp" alt="Mobile finance app" width="4500" height="4500" srcset="assets/images/carousel/Free%20iPhone%20Air-h280.webp 280w, assets/images/carousel/Free%20iPhone%20Air-h420.webp 420w, assets/images/carousel/Free%20iPhone%20Air-h840.webp 840w" sizes="(max-width: 600px) 280.00px, 420.00px" decoding="async" draggable="false"><img src="assets/images/carousel/Random%202-h420.webp" alt="Interface typography exploration" width="1336" height="2198" srcset="assets/images/carousel/Random%202-h280.webp 170w, assets/images/carousel/Random%202-h420.webp 255w, assets/images/carousel/Random%202-h840.webp 511w" sizes="(max-width: 600px) 170.19px, 255.29px" decoding="async" draggable="false"><img src="assets/images/carousel/Trepa-h420.webp" alt="Trepa interface design" width="2400" height="2516" srcset="assets/images/carousel/Trepa-h280.webp 267w, assets/images/carousel/Trepa-h420.webp 401w, assets/images/carousel/Trepa-h840.webp 801w" sizes="(max-width: 600px) 267.09px, 400.64px" decoding="async" draggable="false"><img src="assets/images/carousel/Joint-h420.webp" alt="Joint product design" width="3262" height="2198" srcset="assets/images/carousel/Joint-h280.webp 416w, assets/images/carousel/Joint-h420.webp 623w, assets/images/carousel/Joint-h840.webp 1247w" sizes="(max-width: 600px) 415.54px, 623.31px" decoding="async" draggable="false"><img src="assets/images/carousel/Random-h420.webp" alt="Mobile product exploration" width="2298" height="2198" srcset="assets/images/carousel/Random-h280.webp 293w, assets/images/carousel/Random-h420.webp 439w, assets/images/carousel/Random-h840.webp 878w" sizes="(max-width: 600px) 292.74px, 439.11px" decoding="async" draggable="false"><img src="assets/images/carousel/image%201462568586-h420.webp" alt="Visual design study" width="1211" height="1680" srcset="assets/images/carousel/image%201462568586-h280.webp 202w, assets/images/carousel/image%201462568586-h420.webp 303w, assets/images/carousel/image%201462568586-h840.webp 606w" sizes="(max-width: 600px) 201.83px, 302.75px" decoding="async" draggable="false"><img src="assets/images/carousel/3-h420.webp" alt="Product interface study" width="1564" height="1956" srcset="assets/images/carousel/3-h280.webp 224w, assets/images/carousel/3-h420.webp 336w, assets/images/carousel/3-h840.webp 672w" sizes="(max-width: 600px) 223.89px, 335.83px" decoding="async" draggable="false"><img src="assets/images/carousel/iPhone%2016%20Pro-h420.webp" alt="iPhone product mockup" width="4500" height="4500" srcset="assets/images/carousel/iPhone%2016%20Pro-h280.webp 280w, assets/images/carousel/iPhone%2016%20Pro-h420.webp 420w, assets/images/carousel/iPhone%2016%20Pro-h840.webp 840w" sizes="(max-width: 600px) 280.00px, 420.00px" decoding="async" draggable="false"><img src="assets/images/carousel/Random%203-h420.webp" alt="Mobile interface exploration" width="1336" height="2198" srcset="assets/images/carousel/Random%203-h280.webp 170w, assets/images/carousel/Random%203-h420.webp 255w, assets/images/carousel/Random%203-h840.webp 511w" sizes="(max-width: 600px) 170.19px, 255.29px" decoding="async" draggable="false"></div></div></div>
-      <span class="sr-only" id="gallery-help">Use the left and right arrow keys to browse. Press Space to pause or resume animation. Animation pauses while the gallery has keyboard focus.</span>
     </section>
     <section class="works section" aria-labelledby="works-title"><div class="container section-content">
-      <h2 id="works-title">Selected works</h2>
+      <h2 id="works-title">Work</h2>
       <div class="projects">
-        <a class="project project-link" href="trepa-case-study/" aria-label="Trepa case study"><div class="project-visual"><img class="project-cover" src="assets/images/projects/trepa-550.webp" srcset="assets/images/projects/trepa-550.webp 550w, assets/images/projects/trepa-1100.webp 1100w, assets/images/projects/trepa-1650.webp 1650w" sizes="(max-width: 590px) calc(100vw - 40px), 550px" loading="lazy" decoding="async" width="4096" height="2085" alt="Trepa prediction market desktop and mobile interface"></div><div class="project-caption"><div class="project-identity"><img class="project-icon" src="assets/images/projects/trepa-icon.webp" width="22" height="22" alt="" loading="lazy" decoding="async"><h3>Trepa</h3></div><p>Beyond mobile: Redesigning Trepa for a better prediction experience</p></div></a>
-        <article class="project project-pending" data-pending-project>
-          <div class="project-visual"><img class="project-cover bordered" src="assets/images/projects/paythru-550.webp" srcset="assets/images/projects/paythru-550.webp 550w, assets/images/projects/paythru-1100.webp 1100w, assets/images/projects/paythru-1650.webp 1650w" sizes="(max-width: 590px) calc(100vw - 40px), 550px" loading="lazy" decoding="async" width="4096" height="2085" alt="PayThru Finance brand identity"><div class="coming-soon-overlay" aria-hidden="true"><span class="coming-soon-tag"><img src="assets/icons/coming-soon.svg" width="16" height="16" alt="">coming soon</span></div></div>
-          <div class="project-caption"><div class="project-identity"><img class="project-icon project-icon-bordered" src="assets/images/projects/paythru-icon.webp" width="22" height="22" alt="" loading="lazy" decoding="async"><h3>PayThru Finance</h3></div><p>Designing a simpler way to turn crypto into cash</p></div>
-          <button class="project-pending-trigger" type="button" aria-label="PayThru Finance case study — coming soon"></button>
-          <span class="sr-only" role="status" aria-live="polite" data-pending-status></span>
-        </article>
+        <article class="project-featured"><a class="project project-link" href="trepa-case-study/" aria-label="Trepa case study"><div class="project-visual project-placeholder" aria-hidden="true"><video class="project-video" src="assets/videos/trepa-showreel.mp4" poster="assets/images/projects/trepa-550.webp" width="1200" height="800" muted loop playsinline preload="none" tabindex="-1"></video></div><div class="project-caption"><div class="project-identity"><img class="project-icon" src="assets/images/projects/trepa-icon.webp" width="22" height="22" alt="" loading="lazy" decoding="async"><h3>Trepa</h3></div><p>Beyond mobile: Redesigning Trepa for a better prediction experience</p></div></a></article>
+        <article class="project project-pending" data-pending-project><div class="project-visual project-placeholder" aria-hidden="true"><img class="project-preview" src="assets/images/projects/paythru-preview.png" width="1200" height="800" alt="" loading="lazy" decoding="async"><div class="coming-soon-overlay"><span class="coming-soon-tag"><img src="assets/icons/coming-soon.svg" width="16" height="16" alt="">coming soon</span></div></div><div class="project-caption"><div class="project-identity"><img class="project-icon project-icon-bordered" src="assets/images/projects/paythru-icon.webp" width="22" height="22" alt="" loading="lazy" decoding="async"><h3>PayThru Finance</h3></div><p>Designing a simpler way to turn crypto into cash</p></div><button class="project-pending-trigger" type="button" aria-label="PayThru Finance case study — coming soon"></button><span class="sr-only" role="status" data-pending-status></span></article>
+        <article class="project project-pending" data-pending-project><div class="project-visual project-placeholder project-visual-pluck" aria-hidden="true"><video class="project-video" src="assets/videos/pluck-demo.mp4" muted loop playsinline preload="none" tabindex="-1"></video><div class="coming-soon-overlay"><span class="coming-soon-tag"><img src="assets/icons/coming-soon.svg" width="16" height="16" alt="">coming soon</span></div></div><div class="project-caption"><div class="project-identity"><img class="project-icon" src="assets/images/projects/pluck-icon.png" width="22" height="22" alt="" loading="lazy" decoding="async"><h3>Pluck</h3></div><p>A personal library for saving and organizing design inspiration from X.</p></div><button class="project-pending-trigger" type="button" aria-label="Pluck case study — coming soon"></button><span class="sr-only" role="status" data-pending-status></span></article>
+        <article class="project project-pending" data-pending-project><div class="project-visual project-placeholder" aria-hidden="true"><video class="project-video" src="assets/videos/spag-central-preview.mp4" width="1800" height="1200" muted loop playsinline preload="none" tabindex="-1"></video><div class="coming-soon-overlay"><span class="coming-soon-tag"><img src="assets/icons/coming-soon.svg" width="16" height="16" alt="">coming soon</span></div></div><div class="project-caption"><div class="project-identity"><span class="project-icon project-icon-spag"><span><img src="assets/images/projects/spag-central-icon.png" width="23" height="23" alt="" loading="lazy" decoding="async"></span></span><h3>Spag Central</h3></div><p>A restaurant management dashboard for tracking sales, expenses, and profits.</p></div><button class="project-pending-trigger" type="button" aria-label="Spag Central case study — coming soon"></button><span class="sr-only" role="status" data-pending-status></span></article>
       </div>
     </div></section>
-    <section class="personal-projects section" aria-labelledby="personal-projects-title">
-      <div class="container section-content">
-        <h2 id="personal-projects-title">Personal projects</h2>
-        <ul class="personal-project-list">
-          <li class="personal-project">
-            <div class="personal-project-identity">
-              <div class="personal-project-icon"><img src="assets/images/projects/pluck-icon.png" width="44" height="44" alt="" loading="lazy" decoding="async"></div>
-              <div class="personal-project-copy"><h3>Pluck</h3><p>Personal UI design library</p></div>
-            </div>
-            <a class="personal-project-link" href="https://pluck-app-three.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="View Pluck (opens in a new tab)"><span class="link-label">View</span></a>
-          </li>
-        </ul>
-      </div>
-    </section>
     <section class="experience section" aria-labelledby="experience-title"><div class="container section-content">
-      <h2 id="experience-title">Design Experience</h2>
+      <h2 id="experience-title">Experience</h2>
       <div class="experience-group"><h3 class="group-title">Employment</h3><div class="jobs" id="employment"><article class="dropdown" data-dropdown>
-          <button class="dropdown-trigger" id="trepa-trigger" type="button" aria-expanded="true" aria-controls="trepa-description"><span class="job-title"><span class="job-company">Trepa</span><span class="job-role">Product Designer &amp; Researcher</span></span><span class="job-time"><span class="job-date">Jun '25 - Jun '26</span><span class="dropdown-icon"><img src="assets/icons/chevron.svg" width="16" height="16" alt=""></span></span></button>
-          <div class="dropdown-panel" id="trepa-description" ><div class="dropdown-panel-inner"><div class="work-description"><p>Worked across freelance and full-time roles to shape Trepa’s prediction market product, from redesigning its landing page and creating brand assets to leading the end-to-end redesign of its web app.</p><p>Conducted competitor research, designed engagement features and core user flows, created interactive prototypes, and collaborated with developers through implementation and beta testing.</p></div></div></div>
+          <button class="dropdown-trigger" id="trepa-trigger" type="button" aria-expanded="false" aria-controls="trepa-description"><span class="job-title"><span class="job-company">Trepa</span><span class="job-role">Product Designer &amp; Researcher</span></span><span class="job-time"><span class="job-date">Jun '25 - Jun '26</span><span class="dropdown-icon"><img src="assets/icons/chevron.svg" width="16" height="16" alt=""></span></span></button>
+          <div class="dropdown-panel" id="trepa-description" inert><div class="dropdown-panel-inner"><div class="work-description"><p>Worked across freelance and full-time roles to shape Trepa’s prediction market product, from redesigning its landing page and creating brand assets to leading the end-to-end redesign of its web app.</p><p>Conducted competitor research, designed engagement features and core user flows, created interactive prototypes, and collaborated with developers through implementation and beta testing.</p></div></div></div>
         </article>
 <article class="dropdown" data-dropdown>
           <button class="dropdown-trigger" id="blissful-trigger" type="button" aria-expanded="false" aria-controls="blissful-description"><span class="job-title"><span class="job-company">Blissful Studio</span><span class="job-role">Product &amp; Web Designer</span></span><span class="job-time"><span class="job-date">Jan '25 - Mar '25</span><span class="dropdown-icon"><img src="assets/icons/chevron.svg" width="16" height="16" alt=""></span></span></button>
@@ -126,15 +109,59 @@
           <div class="dropdown-panel" id="skeleton-description" inert><div class="dropdown-panel-inner"><div class="work-description"><p>Designed the complete mobile app experience, including all screens, user flows, and custom UI elements.</p><p>Also designed the landing page and Google Play Store screenshots, contributing to the product’s visual identity and launch materials.</p><p>The app went on to achieve over 2,000 downloads.</p></div></div></div>
         </article></div></div>
     </div></section>
+    <section class="about-section" aria-labelledby="about-title">
+      <div class="about-copy">
+        <h2 id="about-title">About me</h2>
+        <div class="about-prose">
+          <p>I'm currently studying <span class="bright">Software Engineering</span> at <span class="bright">MIVA University</span>, while spending my time designing, building personal projects, and exploring new things that interest me.</p>
+          <p>Outside of design, I enjoy hitting new PRs at the gym, exploring new tech, putting together outfits, and binge-watching anime series. I'm also a big football fan and a proud Liverpool supporter.</p>
+          <p>I'm naturally curious and always looking for something new to learn, try, or get a little too obsessed with.</p>
+        </div>
+      </div>
+      <div class="about-collage" aria-hidden="true">
+        <div class="collage-board">
+          <figure class="collage-item collage-macbook"><img src="assets/images/about/macbook.webp" width="480" height="342" alt="" loading="lazy" decoding="async" draggable="false"></figure>
+          <figure class="collage-item collage-sandals"><img src="assets/images/about/birkenstock.webp" width="512" height="486" alt="" loading="lazy" decoding="async" draggable="false"></figure>
+          <figure class="collage-item collage-portrait-mirror"><img src="assets/images/about/portrait-mirror.webp" width="425" height="480" alt="" loading="lazy" decoding="async" draggable="false"></figure>
+          <figure class="collage-item collage-portrait-outdoors"><img src="assets/images/about/portrait-outdoors.webp" width="425" height="480" alt="" loading="lazy" decoding="async" draggable="false"></figure>
+          <figure class="collage-item collage-bruce-lee"><img src="assets/images/about/bruce-lee.webp" width="259" height="460" alt="" loading="lazy" decoding="async" draggable="false"></figure>
+          <figure class="collage-item collage-liverpool"><figcaption>YNWA</figcaption><img src="assets/images/about/liverpool.webp" width="219" height="400" alt="" loading="lazy" decoding="async" draggable="false"></figure>
+          <figure class="collage-item collage-gear"><figcaption>daily driver</figcaption><span class="collage-gear-row"><span class="collage-crop"><img src="assets/images/about/keyboard.webp" alt="" loading="lazy" decoding="async" draggable="false"></span><img src="assets/images/about/mouse.webp" width="194" height="240" alt="" loading="lazy" decoding="async" draggable="false"></span></figure>
+          <figure class="collage-item collage-controller"><figcaption>off the clock</figcaption><span class="collage-crop"><img src="assets/images/about/controller.webp" alt="" loading="lazy" decoding="async" draggable="false"></span></figure>
+          <figure class="collage-item collage-damn-album"><figcaption>GOAT  🐐</figcaption><img src="assets/images/about/damn-album.webp" width="320" height="320" alt="" loading="lazy" decoding="async" draggable="false"></figure>
+          <figure class="collage-item collage-ichigo"><span class="collage-crop"><img src="assets/images/about/ichigo.webp" alt="" loading="lazy" decoding="async" draggable="false"></span><figcaption>Ichigo</figcaption></figure>
+        </div>
+      </div>
+    </section>
   </main>
   <portfolio-footer>
-  <footer class="section"><div class="container section-content">
-    <div class="signoff"><img loading="lazy" decoding="async" class="portrait" src="assets/images/profile.webp" width="48" height="48" alt="Ayo"><animated-signature></animated-signature></div>
-    <p class="footer-copy">I'm interested in opportunities where I can contribute to product thinking, design execution and the development of useful digital experiences.</p>
-    <nav class="contact-links" aria-label="Contact"><a href="mailto:adebayojohnpaul885@gmail.com" target="_blank" rel="noopener noreferrer"><span class="link-label">Send a mail</span></a><a href="https://x.com/Ayo_Design" target="_blank" rel="noopener noreferrer"><span class="link-label">Twitter</span></a><a href="https://www.linkedin.com/in/johnpauladebayo/" target="_blank" rel="noopener noreferrer"><span class="link-label">LinkedIn</span></a><a href="https://drive.google.com/file/d/1aAd5R4C7v3J3VwL5frNz7BCr2YNsZg_4/view?usp=sharing" target="_blank" rel="noopener noreferrer"><span class="link-label">Resume</span></a></nav>
-    <img class="footer-divider" src="assets/icons/footer-divider.svg" width="550" height="1" alt="" loading="lazy" decoding="async">
-    <div class="footer-credits"><p>Designed &amp; built by me</p><p>© 2026 Johnpaul Adebayo</p></div>
-  </div></footer>
+  <footer class="site-footer" id="site-footer">
+    <div class="footer-note">
+      <span class="footer-paper-frame" aria-hidden="true"><img class="footer-paper" src="assets/images/footer-paper-textured.webp" width="913" height="910" alt="" loading="lazy" decoding="async"></span>
+      <div class="footer-note-content">
+        <p class="footer-note-copy">I'm open to opportunities and roles where I can contribute to product thinking, design and the development of digital experiences.</p>
+        <animated-signature class="footer-signature" ink="dark" manual></animated-signature>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <img class="footer-divider" src="assets/icons/footer-divider-paper.svg" width="600" height="1" alt="" loading="lazy" decoding="async">
+      <div class="container footer-credits"><p>Lagos, UTC+1 · <time data-lagos-clock>local time</time></p><p>© 2026 Johnpaul Adebayo</p></div>
+    </div>
+  </footer>
   </portfolio-footer>
+  <nav class="bottom-nav" aria-label="Quick navigation" inert>
+    <div class="bottom-nav-actions">
+      <a class="bottom-nav-resume" data-tooltip="View resume" href="https://drive.google.com/file/d/1aAd5R4C7v3J3VwL5frNz7BCr2YNsZg_4/view?usp=sharing" target="_blank" rel="noopener noreferrer" aria-label="Resume (opens in a new tab)"><svg class="download-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 10V12.6667C14 13.0203 13.8595 13.3594 13.6095 13.6095C13.3594 13.8595 13.0203 14 12.6667 14H3.33333C2.97971 14 2.64057 13.8595 2.39052 13.6095C2.14048 13.3594 2 13.0203 2 12.6667V10"/><g class="download-arrow"><path d="M8 10V2"/><path d="M4.66667 6.66667L8 10L11.3333 6.66667"/></g></svg>Resume</a>
+      <button type="button" data-tooltip="Copy email address" data-copy-email><svg class="copy-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path class="copy-icon-back" d="M2.667 10.667C1.933 10.667 1.333 10.067 1.333 9.333V2.667C1.333 1.933 1.933 1.333 2.667 1.333H9.333C10.067 1.333 10.667 1.933 10.667 2.667"/><polyline points="5.333,5.333 14.667,5.333 14.667,14.667 5.333,14.667 5.333,5.333"><animate attributeName="points" dur="0.3s" fill="freeze" begin="indefinite" calcMode="spline" keyTimes="0;1" keySplines=".22 1 .36 1"/></polyline></svg><span data-copy-label>Copy mail</span></button>
+      <button type="button" aria-disabled="true" aria-label="Gallery (coming soon)" data-tooltip="Gallery coming soon"><img src="assets/icons/nav-gallery.svg" width="16" height="16" alt="">Gallery</button>
+    </div>
+    <span class="bottom-nav-divider" aria-hidden="true"></span>
+    <div class="bottom-nav-socials">
+      <a href="https://x.com/Ayo_Design" target="_blank" rel="noopener noreferrer" data-tooltip="X / Twitter" aria-label="Johnpaul on X (opens in a new tab)"><img src="assets/icons/hero-x.svg" width="16" height="16" alt=""></a>
+      <a class="bottom-nav-linkedin" href="https://www.linkedin.com/in/johnpauladebayo/" target="_blank" rel="noopener noreferrer" data-tooltip="LinkedIn" aria-label="Johnpaul on LinkedIn (opens in a new tab)"><img src="assets/icons/hero-linkedin.svg" alt=""></a>
+      <a class="bottom-nav-github" href="https://github.com/ay0mikun" target="_blank" rel="noopener noreferrer" data-tooltip="GitHub" aria-label="Johnpaul on GitHub (opens in a new tab)"><img src="assets/icons/hero-github.svg" alt=""></a>
+    </div>
+  </nav>
+  <p class="sr-only" role="status" data-nav-status></p>
 </body>
 </html>
