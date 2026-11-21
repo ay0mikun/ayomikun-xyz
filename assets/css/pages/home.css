@@ -648,3 +648,12 @@ html.is-switching-experience { overflow-anchor: none; }
 
 .project-visual-pluck { display: grid; place-items: center; background: #ff7300; }
 .project-visual-pluck .project-video { width: 93.63%; height: 80%; object-fit: contain; border-radius: 4px; }
+
+/* Continue the hero entrance without blurring large video surfaces or changing layout. */
+@media (prefers-reduced-motion: no-preference) {
+  .works .appear { animation-name: work-appear; }
+}
+@keyframes work-appear {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}

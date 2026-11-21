@@ -1,4 +1,4 @@
-import { playPaperFlip } from './hover-sound.js?v=20261121-9';
+import { playPaperFlip } from './hover-sound.js?v=20261121-14';
 
 const portrait = document.querySelector('.hero-photo');
 const card = portrait.querySelector('.hero-photo-flipper');

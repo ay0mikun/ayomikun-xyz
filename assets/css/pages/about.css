@@ -54,6 +54,7 @@
   .about-copy { width: calc(100% - 32px); }
   .about-collage { --mobile-unit: min(1px,calc(100vw / 390)); height: calc(400 * var(--mobile-unit)); }
   .collage-board { --unit: var(--mobile-unit); width: calc(390 * var(--unit)); height: calc(400 * var(--unit)); }
+  .collage-item { width: calc(var(--w) * var(--unit) * 1.5); }
   .collage-liverpool { --label-size: 6.533; }
   .collage-gear { gap: calc(2.64 * var(--unit)); --label-size: 7.92; }
   .collage-controller { gap: calc(4 * var(--unit)); --label-size: 8.5; }

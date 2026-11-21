@@ -1,4 +1,4 @@
-import { playCopyConfirmation } from './hover-sound.js?v=20261121-9';
+import { playCopyConfirmation } from './hover-sound.js?v=20261121-14';
 
 const copyButton = document.querySelector('[data-copy-email]');
 const status = document.querySelector('[data-nav-status]');

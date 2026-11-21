@@ -31,7 +31,7 @@ const playTick = () => {
   filter.type = 'bandpass';
   filter.frequency.value = 5400;
   filter.Q.value = 1.8;
-  gain.gain.value = .75 * .5;
+  gain.gain.value = 1;
   source.connect(filter);
   filter.connect(gain);
   gain.connect(context.destination);
@@ -60,7 +60,7 @@ export function playPaperFlip(delay = 0) {
   const play = () => {
     if (context.state !== 'running' || document.hidden) return;
     const master = context.createGain();
-    master.gain.value = .38;
+    master.gain.value = 1;
     master.connect(context.destination);
     const layers = [
       { filter: 'lowpass', frequency: 1800, q: .7, offset: 0, attack: .006, decay: .08, peak: .11 },
@@ -117,7 +117,7 @@ export function playCopyConfirmation() {
     const master = context.createGain();
     const boost = context.createGain();
     const compressor = context.createDynamicsCompressor();
-    master.gain.value = .5;
+    master.gain.value = 1;
     boost.gain.value = 4;
     compressor.threshold.value = -8;
     compressor.knee.value = 6;
