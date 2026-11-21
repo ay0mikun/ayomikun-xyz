@@ -1,9 +1,9 @@
 // Reuse data-pending-project for any case study that is still in progress.
+const motion = matchMedia('(prefers-reduced-motion: reduce)');
 document.querySelectorAll('[data-pending-project]').forEach(project => {
   const button = project.querySelector('.project-pending-trigger');
   const tag = project.querySelector('.coming-soon-tag');
   const status = project.querySelector('[data-pending-status]');
-  const motion = matchMedia('(prefers-reduced-motion: reduce)');
   let attempts = 0;
   let timeout;
   let shake;

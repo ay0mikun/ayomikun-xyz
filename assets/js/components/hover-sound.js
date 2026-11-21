@@ -161,12 +161,12 @@ export function playCopyConfirmation() {
   else context.resume().then(play).catch(() => {});
 }
 
-// Only the three CC0 Soft cues are shipped; reuse the existing Web Audio context.
+// Only the four CC0 Soft cues are shipped; reuse the existing Web Audio context.
 const softBuffers = new Map();
 let softLoading;
 function prepareSoftSounds() {
   if (softLoading || !context) return;
-  softLoading = Promise.all(['hover', 'press', 'open'].map(async cue => {
+  softLoading = Promise.all(['hover', 'press', 'open', 'error'].map(async cue => {
     try {
       const response = await fetch(new URL(`../../sounds/soft-${cue}.mp3`, import.meta.url));
       if (!response.ok) return;
@@ -178,12 +178,13 @@ function prepareSoftSounds() {
 const playSoftSound = cue => {
   unlock();
   const buffer = softBuffers.get(cue);
-  if (!buffer || context?.state !== 'running' || document.hidden) return;
+  if (!buffer || context?.state !== 'running' || document.hidden) return false;
   const source = context.createBufferSource();
   source.buffer = buffer;
   source.connect(context.destination);
   source.onended = () => source.disconnect();
   source.start();
+  return true;
 };
 document.querySelectorAll('.collage-item').forEach(item => {
   item.addEventListener('pointerenter', event => {
@@ -194,6 +195,15 @@ document.querySelectorAll('.collage-item').forEach(item => {
   });
 });
 
-document.querySelectorAll('.resume-button, .bottom-nav-resume').forEach(button => {
-  button.addEventListener('click', () => playSoftSound('open'));
+// One semantic click binding; visual feedback remains in the respective components.
+document.addEventListener('click', event => {
+  const target = event.target.closest('.resume-button, .bottom-nav-resume, .project-link, .project-pending-trigger');
+  if (!target || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+  const unavailable = target.matches('.project-pending-trigger');
+  const played = playSoftSound(unavailable ? 'error' : 'open');
+  if (played && target.matches('.project-link') && !target.target && !event.defaultPrevented) {
+    // Let the cue register before same-tab navigation tears down this audio context.
+    event.preventDefault();
+    setTimeout(() => location.assign(target.href), 140);
+  }
 });

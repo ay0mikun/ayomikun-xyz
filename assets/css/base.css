@@ -280,7 +280,7 @@ a,button,summary,input,select,textarea,[role="button"],[role="link"],[role="slid
   width: 100%;
   color: #0e0e0e;
   font-family: Caveat,cursive;
-  font-size: min(16px,5.54658515cqw);
+  font-size: 36px;
   letter-spacing: -.01em;
   font-weight: 400;
   line-height: 1.2;
@@ -299,7 +299,7 @@ a,button,summary,input,select,textarea,[role="button"],[role="link"],[role="slid
   .footer-note { aspect-ratio: 358 / 381.277; }
   .footer-paper-frame { width: 100%; }
   .footer-note-content { left: 50%; width: 72.625698%; top: calc(50% + 5.687151cqw); gap: 21.969274cqw; transform: translate(-50%,-50%) rotate(3deg); }
-  .footer-note-copy { font-size: min(16px,6.536313cqw); }
+  .footer-note-copy { font-size: 24px; }
   .footer-credits { flex-direction: column; align-items: flex-start; }
 }
 
