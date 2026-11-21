@@ -302,3 +302,6 @@ a,button,summary,input,select,textarea,[role="button"],[role="link"],[role="slid
   .footer-note-copy { font-size: min(16px,6.536313cqw); }
   .footer-credits { flex-direction: column; align-items: flex-start; }
 }
+
+/* Shared case-study reading rhythm; single-line text retains its original leading. */
+.case-study .is-multiline { line-height: 1.6; }
