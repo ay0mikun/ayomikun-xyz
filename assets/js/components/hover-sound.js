@@ -161,14 +161,14 @@ export function playCopyConfirmation() {
   else context.resume().then(play).catch(() => {});
 }
 
-// Only the four CC0 Soft cues are shipped; reuse the existing Web Audio context.
+// Only the four used CC0 library cues are shipped; reuse the existing Web Audio context.
 const softBuffers = new Map();
 let softLoading;
 function prepareSoftSounds() {
   if (softLoading || !context) return;
-  softLoading = Promise.all(['hover', 'press', 'open', 'error'].map(async cue => {
+  softLoading = Promise.all(['soft-hover', 'soft-press', 'minimal-select', 'minimal-undo'].map(async cue => {
     try {
-      const response = await fetch(new URL(`../../sounds/soft-${cue}.mp3`, import.meta.url));
+      const response = await fetch(new URL(`../../sounds/${cue}.mp3`, import.meta.url));
       if (!response.ok) return;
       const buffer = await context.decodeAudioData(await response.arrayBuffer());
       softBuffers.set(cue, buffer);
@@ -188,10 +188,10 @@ const playSoftSound = cue => {
 };
 document.querySelectorAll('.collage-item').forEach(item => {
   item.addEventListener('pointerenter', event => {
-    if (event.pointerType !== 'touch') playSoftSound('hover');
+    if (event.pointerType !== 'touch') playSoftSound('soft-hover');
   });
   item.addEventListener('pointerdown', event => {
-    if (event.isPrimary && event.button === 0) playSoftSound('press');
+    if (event.isPrimary && event.button === 0) playSoftSound('soft-press');
   });
 });
 
@@ -200,10 +200,53 @@ document.addEventListener('click', event => {
   const target = event.target.closest('.resume-button, .bottom-nav-resume, .project-link, .project-pending-trigger');
   if (!target || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
   const unavailable = target.matches('.project-pending-trigger');
-  const played = playSoftSound(unavailable ? 'error' : 'open');
+  const played = playSoftSound(unavailable ? 'minimal-undo' : 'minimal-select');
   if (played && target.matches('.project-link') && !target.target && !event.defaultPrevented) {
     // Let the cue register before same-tab navigation tears down this audio context.
     event.preventDefault();
     setTimeout(() => location.assign(target.href), 140);
   }
 });
+
+// Match the reference signature's filtered-noise pen stroke, sharing our audio context.
+let penNoise;
+let lastPenStroke = -Infinity;
+export function playPenStroke() {
+  if (performance.now() - lastPenStroke < 450) return;
+  unlock();
+  if (!context || document.hidden) return;
+  const play = () => {
+    if (context.state !== 'running' || document.hidden) return;
+    lastPenStroke = performance.now();
+    if (!penNoise) {
+      penNoise = context.createBuffer(1, Math.floor(context.sampleRate * 1.2), context.sampleRate);
+      const samples = penNoise.getChannelData(0);
+      for (let i = 0; i < samples.length; i++) samples[i] = Math.random() * 2 - 1;
+    }
+    const source = context.createBufferSource();
+    const highpass = context.createBiquadFilter();
+    const bandpass = context.createBiquadFilter();
+    const gain = context.createGain();
+    source.buffer = penNoise;
+    source.loop = true;
+    highpass.type = 'highpass';
+    highpass.frequency.value = 340;
+    bandpass.type = 'bandpass';
+    bandpass.Q.value = .9;
+    const start = context.currentTime + .18;
+    const duration = .52;
+    bandpass.frequency.setValueAtTime(430, start);
+    bandpass.frequency.exponentialRampToValueAtTime(2300, start + duration * .42);
+    bandpass.frequency.exponentialRampToValueAtTime(720, start + duration);
+    gain.gain.setValueAtTime(.0001, start);
+    gain.gain.exponentialRampToValueAtTime(.26, start + duration * .3);
+    gain.gain.exponentialRampToValueAtTime(.0001, start + duration);
+    source.connect(highpass).connect(bandpass).connect(gain).connect(context.destination);
+    source.onended = () => [source, highpass, bandpass, gain].forEach(node => node.disconnect());
+    source.start(start);
+    source.stop(start + duration + .02);
+  };
+  if (context.state === 'running') play();
+  else context.resume().then(play).catch(() => {});
+}
+document.querySelector('.hero-name-replay')?.addEventListener('click', playPenStroke);

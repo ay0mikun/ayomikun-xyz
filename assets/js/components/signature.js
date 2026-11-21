@@ -1,3 +1,5 @@
+import { playPenStroke } from './hover-sound.js?v=20261121-21';
+
 // <animated-signature duration="2600"> draws the original SVG along its pen path.
 (() => {
   const base = import.meta.url;
@@ -16,7 +18,7 @@
         button:focus-visible{outline:2px solid #b1b0ae;outline-offset:5px}
         svg,img{display:block;width:100%;height:auto;pointer-events:none}
       </style><button type="button" aria-label="Replay Johnpaul signature animation"><img src="${initialArtwork}" width="116.574" height="28.0804" alt=""></button>`;
-      this.shadowRoot.querySelector('button').addEventListener('click', () => this.replay());
+      this.shadowRoot.querySelector('button').addEventListener('click', () => { playPenStroke(); this.replay(); });
       this.motion = matchMedia('(prefers-reduced-motion: reduce)');
       this.stop = () => { if (this.motion.matches) { this.animation?.cancel(); if (this.pen) this.pen.style.strokeDashoffset = '0'; } };
     }
