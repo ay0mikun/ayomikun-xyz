@@ -15,6 +15,7 @@ const unlock = () => {
   try {
     context ||= new (window.AudioContext || window.webkitAudioContext)({ latencyHint: 'interactive' });
     prepareTick();
+    prepareSoftSounds();
     if (context.state === 'suspended' && !resuming) {
       resuming = context.resume().catch(() => {}).finally(() => { resuming = null; });
     }
@@ -38,7 +39,7 @@ const playTick = () => {
   source.onended = () => { source.disconnect(); filter.disconnect(); gain.disconnect(); };
   source.start();
 };
-document.querySelectorAll('.hero-socials a, .bottom-nav a, .bottom-nav button').forEach(item => {
+document.querySelectorAll('.hero-socials a, .resume-button, .bottom-nav a, .bottom-nav button, .experience .dropdown-trigger').forEach(item => {
   item.addEventListener('pointerenter', event => {
     if (event.pointerType === 'touch' || document.hidden) return;
     unlock();
@@ -159,3 +160,40 @@ export function playCopyConfirmation() {
   if (context.state === 'running') play();
   else context.resume().then(play).catch(() => {});
 }
+
+// Only the three CC0 Soft cues are shipped; reuse the existing Web Audio context.
+const softBuffers = new Map();
+let softLoading;
+function prepareSoftSounds() {
+  if (softLoading || !context) return;
+  softLoading = Promise.all(['hover', 'press', 'open'].map(async cue => {
+    try {
+      const response = await fetch(new URL(`../../sounds/soft-${cue}.mp3`, import.meta.url));
+      if (!response.ok) return;
+      const buffer = await context.decodeAudioData(await response.arrayBuffer());
+      softBuffers.set(cue, buffer);
+    } catch { /* Keep decorative interactions usable if audio fails. */ }
+  }));
+}
+const playSoftSound = cue => {
+  unlock();
+  const buffer = softBuffers.get(cue);
+  if (!buffer || context?.state !== 'running' || document.hidden) return;
+  const source = context.createBufferSource();
+  source.buffer = buffer;
+  source.connect(context.destination);
+  source.onended = () => source.disconnect();
+  source.start();
+};
+document.querySelectorAll('.collage-item').forEach(item => {
+  item.addEventListener('pointerenter', event => {
+    if (event.pointerType !== 'touch') playSoftSound('hover');
+  });
+  item.addEventListener('pointerdown', event => {
+    if (event.isPrimary && event.button === 0) playSoftSound('press');
+  });
+});
+
+document.querySelectorAll('.resume-button, .bottom-nav-resume').forEach(button => {
+  button.addEventListener('click', () => playSoftSound('open'));
+});

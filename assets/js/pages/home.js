@@ -1,10 +1,10 @@
 import '../main.js?v=20261121-16';
 import '../components/dropdown.js?v=20261120-2';
 import '../components/pending-projects.js';
-import '../components/bottom-nav.js?v=20261121-14';
+import '../components/bottom-nav.js?v=20261121-18';
 import '../components/name-underline.js';
-import '../components/portrait-flip.js?v=20261121-14';
+import '../components/portrait-flip.js?v=20261121-18';
 import '../components/tooltip.js?v=20261121-6';
 import '../components/project-video.js?v=20261120-23';
 import '../components/collage.js?v=20261121-2';
-import '../components/hover-sound.js?v=20261121-14';
+import '../components/hover-sound.js?v=20261121-18';
